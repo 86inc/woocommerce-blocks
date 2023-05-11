@@ -3,7 +3,7 @@
  */
 import { Icon } from '@wordpress/icons';
 import {
-	customerAccountStyle,
+	customerAccountStyleThin,
 	customerAccountStyleAlt,
 } from '@woocommerce/icons';
 import { getSetting } from '@woocommerce/settings';
@@ -26,7 +26,7 @@ const AccountIcon = ( {
 	const icon =
 		iconStyle === IconStyle.ALT
 			? customerAccountStyleAlt
-			: customerAccountStyle;
+			: customerAccountStyleThin;
 
 	return displayStyle === DisplayStyle.TEXT_ONLY ? null : (
 		<Icon className={ iconClass } icon={ icon } size={ 18 } />

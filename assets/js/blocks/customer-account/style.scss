@@ -6,12 +6,13 @@
 		color: currentColor !important;
 
 		&:hover {
-			text-decoration: underline !important;
+			//text-decoration: underline !important;
+			opacity: 0.6;
 		}
 
 		.icon {
-			height: em(16px);
-			width: em(16px);
+			height: em(22px);
+			width: em(22px);
 		}
 
 		.wc-block-customer-account__account-icon {
