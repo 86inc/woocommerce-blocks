@@ -2,7 +2,7 @@
  * Internal dependencies
  */
 import { ACTION_TYPES as types } from './action-types.js';
-import { API_BLOCK_NAMESPACE } from '../constants';
+import { API_BLOCK_NAMESPACE } from '../constants.js';
 
 /**
  * Returns an action object used to update the store with the provided list

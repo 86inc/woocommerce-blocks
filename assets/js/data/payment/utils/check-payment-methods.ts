@@ -28,8 +28,8 @@ import {
 	EMPTY_CART_ERRORS,
 	EMPTY_CART_ITEM_ERRORS,
 	EMPTY_EXTENSIONS,
-} from '../../../data/constants';
-import { defaultCartState } from '../../../data/cart/default-state';
+} from '../../constants';
+import { defaultCartState } from '../../cart/default-state';
 
 const registrationErrorNotice = (
 	paymentMethod:

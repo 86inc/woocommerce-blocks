@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import type { Notice } from '@wordpress/notices/';
+import type { Notice } from '@wordpress/notices';
 import { DataRegistry } from '@wordpress/data';
 import { FieldValidationStatus } from '@woocommerce/types';
 

@@ -74,6 +74,8 @@ window.addEventListener( 'load', () => {
 		}
 	};
 
+	loadScripts();
+
 	document.body.addEventListener( 'wc-blocks_adding_to_cart', loadScripts );
 
 	// Load scripts if a page is reloaded via the back button (potentially out of date cart data).
@@ -177,16 +179,16 @@ window.addEventListener( 'load', () => {
 	 * We only set the background color, instead of the whole background. As
 	 * we only provide the option to customize the background color.
 	 */
-	const style = document.createElement( 'style' );
-	const backgroundColor = getComputedStyle( document.body ).backgroundColor;
+	// const style = document.createElement( 'style' );
+	// const backgroundColor = getComputedStyle( document.body ).backgroundColor;
 
-	style.appendChild(
-		document.createTextNode(
-			`:where(.wp-block-woocommerce-mini-cart-contents) {
-				background-color: ${ backgroundColor };
-			}`
-		)
-	);
+	// style.appendChild(
+	// 	document.createTextNode(
+	// 		`:where(.wp-block-woocommerce-mini-cart-contents) {
+	// 			background-color: ${ backgroundColor };
+	// 		}`
+	// 	)
+	// );
 
-	document.head.appendChild( style );
+	// document.head.appendChild( style );
 } );

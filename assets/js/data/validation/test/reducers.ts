@@ -7,7 +7,7 @@ import { FieldValidationStatus } from '@woocommerce/types';
  * Internal dependencies
  */
 import reducer from '../reducers';
-import { ACTION_TYPES as types } from '.././action-types';
+import { ACTION_TYPES as types } from '../action-types';
 import { ValidationAction } from '../actions';
 
 describe( 'Validation reducer', () => {

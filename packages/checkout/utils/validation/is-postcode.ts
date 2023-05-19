@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import { POSTCODE_REGEXES } from 'postcode-validator/lib/cjs/postcode-regexes.js';
+import { POSTCODE_REGEXES } from 'postcode-validator/lib/cjs/postcode-regexes';
 
 const CUSTOM_REGEXES = new Map< string, RegExp >( [
 	[ 'BA', /^([7-8]{1})([0-9]{4})$/ ],

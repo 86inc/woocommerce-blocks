@@ -5,7 +5,7 @@ import { renderHook } from '@testing-library/react-hooks';
 /**
  * Internal dependencies
  */
-import { registerCheckoutFilters, applyCheckoutFilter } from '../';
+import { registerCheckoutFilters, applyCheckoutFilter } from '..';
 
 jest.mock( '@woocommerce/settings', () => {
 	const originalModule = jest.requireActual( '@woocommerce/settings' );

@@ -6,7 +6,7 @@ import { fireEvent, render } from '@testing-library/react';
 /**
  * Internal dependencies
  */
-import { SearchListControl } from '../';
+import { SearchListControl } from '..';
 
 const noop = () => {};
 
