@@ -11,7 +11,7 @@ import type { CartShippingPackageShippingRate } from '@woocommerce/types';
  * Internal dependencies
  */
 import { renderPackageRateOption } from './render-package-rate-option';
-import type { PackageRateRenderOption } from '../shipping-rates-control-package';
+import type { PackageRateRenderOption } from '.';
 
 interface PackageRates {
 	onSelectRate: ( selectedRateId: string ) => void;

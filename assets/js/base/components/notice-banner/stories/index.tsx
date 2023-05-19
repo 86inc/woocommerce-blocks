@@ -6,7 +6,7 @@ import type { Story, Meta } from '@storybook/react';
 /**
  * Internal dependencies
  */
-import NoticeBanner, { NoticeBannerProps } from '../';
+import NoticeBanner, { NoticeBannerProps } from '..';
 const availableStatus = [ 'default', 'success', 'error', 'warning', 'info' ];
 
 export default {

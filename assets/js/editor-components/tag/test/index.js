@@ -6,7 +6,7 @@ import { render } from '@testing-library/react';
 /**
  * Internal dependencies
  */
-import Tag from '../';
+import Tag from '..';
 
 const noop = () => {};
 

@@ -6,7 +6,7 @@ import type { Story, Meta } from '@storybook/react';
 /**
  * Internal dependencies
  */
-import SnackbarList, { SnackbarListProps } from '../';
+import SnackbarList, { SnackbarListProps } from '..';
 
 export default {
 	title: 'WooCommerce Blocks/@base-components/SnackbarList',

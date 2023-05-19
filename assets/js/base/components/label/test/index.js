@@ -6,7 +6,7 @@ import TestRenderer from 'react-test-renderer';
 /**
  * Internal dependencies
  */
-import Label from '../';
+import Label from '..';
 
 describe( 'Label', () => {
 	describe( 'without wrapperElement', () => {

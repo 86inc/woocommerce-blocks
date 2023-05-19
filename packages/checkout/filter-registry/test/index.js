@@ -5,7 +5,7 @@ import { renderHook } from '@testing-library/react-hooks';
 /**
  * Internal dependencies
  */
-import { registerCheckoutFilters, applyCheckoutFilter } from '../';
+import { registerCheckoutFilters, applyCheckoutFilter } from '..';
 
 describe( 'Checkout registry', () => {
 	const filterName = 'loremIpsum';
