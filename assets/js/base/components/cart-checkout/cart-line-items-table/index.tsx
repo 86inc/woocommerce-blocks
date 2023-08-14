@@ -2,10 +2,12 @@
  * External dependencies
  */
 import classnames from 'classnames';
-import { __ } from '@wordpress/i18n';
+import { __, sprintf, _n } from '@wordpress/i18n';
+
 import { CartResponseItem } from '@woocommerce/types';
 import { createRef, useEffect, useRef } from '@wordpress/element';
 import type { RefObject } from 'react';
+import { useStoreCart } from '@woocommerce/base-context';
 
 /**
  * Internal dependencies
@@ -38,6 +40,8 @@ const CartLineItemsTable = ( {
 }: CartLineItemsTableProps ): JSX.Element => {
 	const tableRef = useRef< HTMLTableElement | null >( null );
 	const rowRefs = useRef( setRefs( lineItems ) );
+	const { cartItemsCount } = useStoreCart();
+
 	useEffect( () => {
 		rowRefs.current = setRefs( lineItems );
 	}, [ lineItems ] );
@@ -71,32 +75,60 @@ const CartLineItemsTable = ( {
 		  } );
 
 	return (
-		<table
-			className={ classnames( 'wc-block-cart-items', className ) }
-			ref={ tableRef }
-			tabIndex={ -1 }
-		>
-			<thead>
-				<tr className="wc-block-cart-items__header">
-					<th className="wc-block-cart-items__header-image">
-						<span>
-							{ __( 'Product', 'woo-gutenberg-products-block' ) }
-						</span>
-					</th>
-					<th className="wc-block-cart-items__header-product">
-						<span>
-							{ __( 'Details', 'woo-gutenberg-products-block' ) }
-						</span>
-					</th>
-					<th className="wc-block-cart-items__header-total">
-						<span>
-							{ __( 'Total', 'woo-gutenberg-products-block' ) }
-						</span>
-					</th>
-				</tr>
-			</thead>
-			<tbody>{ products }</tbody>
-		</table>
+		<div>
+			<span className="wc-block-cart-items__title">
+				<span className="title">
+					{ __( 'Shopping bag', 'woo-gutenberg-products-block' ) }
+				</span>
+				<span>
+					{ sprintf(
+						/* translators: %d is the count of items in the cart. */
+						_n(
+							'(%d item)',
+							'(%d items)',
+							cartItemsCount,
+							'woo-gutenberg-products-block'
+						),
+						cartItemsCount
+					) }
+				</span>
+			</span>
+			<table
+				className={ classnames( 'wc-block-cart-items', className ) }
+				ref={ tableRef }
+				tabIndex={ -1 }
+			>
+				<thead>
+					<tr className="wc-block-cart-items__header">
+						<th className="wc-block-cart-items__header-image">
+							<span>
+								{ __(
+									'Product',
+									'woo-gutenberg-products-block'
+								) }
+							</span>
+						</th>
+						<th className="wc-block-cart-items__header-product">
+							<span>
+								{ __(
+									'Details',
+									'woo-gutenberg-products-block'
+								) }
+							</span>
+						</th>
+						<th className="wc-block-cart-items__header-total">
+							<span>
+								{ __(
+									'Total',
+									'woo-gutenberg-products-block'
+								) }
+							</span>
+						</th>
+					</tr>
+				</thead>
+				<tbody>{ products }</tbody>
+			</table>
+		</div>
 	);
 };
 

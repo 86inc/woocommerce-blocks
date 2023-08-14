@@ -25,6 +25,7 @@ import { getSetting } from '@woocommerce/settings';
  */
 import ProductBackorderBadge from '../product-backorder-badge';
 import ProductImage from '../product-image';
+import ProductImages from '../product-images';
 import ProductLowStockBadge from '../product-low-stock-badge';
 import ProductMetadata from '../product-metadata';
 import ProductSaleBadge from '../product-sale-badge';
@@ -158,7 +159,14 @@ const CartLineItemRow: React.ForwardRefExoticComponent<
 			precision: totalsCurrency.minorUnit,
 		} );
 
-		const firstImage = images.length ? images[ 0 ] : {};
+		const customImages = extensions?.lumise_data?.screenshots || [];
+		const hasLumise = extensions?.lumise_data?.edit_link;
+
+		const itemImages = customImages.length
+			? customImages.slice( 0, 4 )
+			: images.slice( 0, 1 );
+		const firstImage = customImages.length ? images[ 0 ] : {};
+
 		const isProductHiddenFromCatalog =
 			catalogVisibility === 'hidden' || catalogVisibility === 'search';
 
@@ -227,12 +235,11 @@ const CartLineItemRow: React.ForwardRefExoticComponent<
 							fallbackAlt={ name }
 						/>
 					) : (
-						<a href={ permalink } tabIndex={ -1 }>
-							<ProductImage
-								image={ firstImage }
-								fallbackAlt={ name }
-							/>
-						</a>
+						//<a href={ permalink } tabIndex={ -1 }> // Makes it hard to navigate.
+						//<ProductImage image={ firstImage } fallbackAlt={ name }/>
+						//</a>
+
+						<ProductImages images={ itemImages } />
 					) }
 				</td>
 				<td className="wc-block-cart-item__product">
@@ -284,6 +291,20 @@ const CartLineItemRow: React.ForwardRefExoticComponent<
 							itemData={ itemData }
 							variation={ variation }
 						/>
+
+						{ hasLumise && (
+							<div className="edit-design">
+								<a href={ hasLumise }>
+									<span className="icon-class icon-pencil"></span>
+									<span>
+										{ __(
+											'Edit Design',
+											'woo-gutenberg-products-block'
+										) }
+									</span>
+								</a>
+							</div>
+						) }
 
 						<div className="wc-block-cart-item__quantity">
 							{ ! soldIndividually &&
