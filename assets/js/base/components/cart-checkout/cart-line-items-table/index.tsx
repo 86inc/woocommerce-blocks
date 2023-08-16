@@ -15,7 +15,7 @@ import { useStoreCart } from '@woocommerce/base-context';
 import CartLineItemRow from './cart-line-item-row';
 import './style.scss';
 
-const placeholderRows = [ ...Array( 3 ) ].map( ( _x, i ) => (
+const placeholderRows = [ ...Array( 1 ) ].map( ( _x, i ) => (
 	<CartLineItemRow lineItem={ {} } key={ i } />
 ) );
 
@@ -40,7 +40,20 @@ const CartLineItemsTable = ( {
 }: CartLineItemsTableProps ): JSX.Element => {
 	const tableRef = useRef< HTMLTableElement | null >( null );
 	const rowRefs = useRef( setRefs( lineItems ) );
-	const { cartItemsCount } = useStoreCart();
+	const { cartItemsCount, ...cart } = useStoreCart();
+	// 86inc only because it's minicart we know window access should be fine.
+	const getShippingMeter = ( parentClassName: string | null ) => {
+		const context =
+			parentClassName === 'wc-block-mini-cart-items'
+				? 'woocommerce/mini-cart'
+				: 'woocommerce/cart-items';
+
+		if ( typeof window.ShippingMeter === 'function' ) {
+			const ShippingMeter = window.ShippingMeter;
+			return <ShippingMeter cart={ cart } context={ context } />;
+		}
+		return <></>;
+	};
 
 	useEffect( () => {
 		rowRefs.current = setRefs( lineItems );
@@ -76,6 +89,7 @@ const CartLineItemsTable = ( {
 
 	return (
 		<div>
+			{ getShippingMeter( className ) }
 			<span className="wc-block-cart-items__title">
 				<span className="title">
 					{ __( 'Shopping bag', 'woo-gutenberg-products-block' ) }

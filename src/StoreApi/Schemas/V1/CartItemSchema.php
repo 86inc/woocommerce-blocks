@@ -47,7 +47,7 @@ class CartItemSchema extends ItemSchema {
 		 */
 		$product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $product->get_permalink(), $cart_item, $cart_item['key'] );
 
-		return [
+		$d = [
 			'key'                  => $cart_item['key'],
 			'id'                   => $product->get_id(),
 			'quantity'             => wc_stock_amount( $cart_item['quantity'] ),
@@ -76,6 +76,8 @@ class CartItemSchema extends ItemSchema {
 			'catalog_visibility'   => $product->get_catalog_visibility(),
 			self::EXTENDING_KEY    => $this->get_extended_data( self::IDENTIFIER, $cart_item ),
 		];
+
+		return $d;
 	}
 
 	/**

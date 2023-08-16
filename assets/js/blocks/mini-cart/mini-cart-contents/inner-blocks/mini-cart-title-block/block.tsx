@@ -31,16 +31,23 @@ const Block = ( {
 	const hasTitleInnerBlocks = hasChildren( children );
 
 	return (
-		<h2 className={ classNames( className, 'wc-block-mini-cart__title' ) }>
-			{ hasTitleInnerBlocks ? (
-				children
-			) : (
-				<>
-					<TitleYourCart />
-					<TitleItemsCounter />
-				</>
-			) }
-		</h2>
+		<>
+			<h2
+				className={ classNames(
+					className,
+					'wc-block-mini-cart__title'
+				) }
+			>
+				{ hasTitleInnerBlocks ? (
+					children
+				) : (
+					<>
+						<TitleYourCart />
+						<TitleItemsCounter />
+					</>
+				) }
+			</h2>
+		</>
 	);
 };
 

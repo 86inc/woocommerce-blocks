@@ -10,6 +10,7 @@ import ProductName from '@woocommerce/base-components/product-name';
 import {
 	useStoreCartItemQuantity,
 	useStoreEvents,
+	useStoreAddToCart,
 	useStoreCart,
 } from '@woocommerce/base-context/hooks';
 import { getCurrencyFromPriceResponse } from '@woocommerce/price-format';
@@ -172,7 +173,7 @@ const CartLineItemRow: React.ForwardRefExoticComponent<
 
 		const cartItemClassNameFilter = applyCheckoutFilter( {
 			filterName: 'cartItemClass',
-			defaultValue: '',
+			defaultValue: hasLumise ? 'lumise-product' : '',
 			extensions,
 			arg,
 		} );
