@@ -126,13 +126,13 @@ class ProductQuery extends AbstractBlock {
 		$post_template_has_support_for_grid_view = $this->check_if_post_template_has_support_for_grid_view();
 
 		$this->asset_data_registry->add(
-			'post_template_has_support_for_grid_view',
+			'postTemplateHasSupportForGridView',
 			$post_template_has_support_for_grid_view
 		);
 
 		// The `loop_shop_per_page` filter can be found in WC_Query::product_query().
 		// phpcs:ignore WooCommerce.Commenting.CommentHooks.MissingHookComment
-		$this->asset_data_registry->add( 'loop_shop_per_page', apply_filters( 'loop_shop_per_page', wc_get_default_products_per_row() * wc_get_default_product_rows_per_page() ), true );
+		$this->asset_data_registry->add( 'loopShopPerPage', apply_filters( 'loop_shop_per_page', wc_get_default_products_per_row() * wc_get_default_product_rows_per_page() ), true );
 	}
 
 	/**
@@ -170,15 +170,15 @@ class ProductQuery extends AbstractBlock {
 	 */
 	public function update_query( $pre_render, $parsed_block ) {
 		if ( 'core/query' !== $parsed_block['blockName'] ) {
-			return;
+			return $pre_render;
 		}
 
 		$this->parsed_block = $parsed_block;
 
 		if ( self::is_woocommerce_variation( $parsed_block ) ) {
 			// Set this so that our product filters can detect if it's a PHP template.
-			$this->asset_data_registry->add( 'has_filterable_products', true, true );
-			$this->asset_data_registry->add( 'is_rendering_php_template', true, true );
+			$this->asset_data_registry->add( 'hasFilterableProducts', true, true );
+			$this->asset_data_registry->add( 'isRenderingPhpTemplate', true, true );
 			add_filter(
 				'query_loop_block_query_vars',
 				array( $this, 'build_query' ),
@@ -186,6 +186,8 @@ class ProductQuery extends AbstractBlock {
 				1
 			);
 		}
+
+		return $pre_render;
 	}
 
 	/**

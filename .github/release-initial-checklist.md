@@ -26,7 +26,10 @@ The release pull request has been created! This checklist is a guide to follow f
 -   [ ] Run `npm run package-plugin:deploy`. This will create a zip of the current branch build locally.
     -   Note: The zip file is functionally equivalent to what gets released except the version bump.
 -   [ ] Create the testing notes for the release.
-    -   [ ] For each pull request that belongs to the current release, grab the `User Facing Testing` notes from the PR's description. Be sure that the `Do not include in the Testing Notes is not flagged` checkbox is unchecked.
+    -   [ ] For each pull request that belongs to the current release, grab the `User Facing Testing` notes from the PR's description.
+        - If a PR has the `Should be tested by the development team exclusively` checkbox checked, create a new section called 'Testing notes for the development team' and copy the `User Facing Testing` notes from the PR to this section.
+        - If a PR has the `Experimental` checkbox checked, do not include it in the testing instructions.
+        - If a PR has the `Do not include in the Testing Notes` checkbox checked, as the description suggests, do not include it in the release instructions.
     -   [ ] Add the notes to `docs/internal-developers/testing/releases`
     -   [ ] Update the `docs/internal-developers/testing/releases/README.md` file index.
 -   [ ] Copy a link to the release zip you created earlier into the testing notes. To generate the link you can upload the zip as an attachment in a GitHub comment and then just copy the path (without publishing the comment).
@@ -78,14 +81,14 @@ Each porter is responsible for testing the PRs that fall under the focus of thei
 
 ## After Workflow completes
 
--   [ ] Port to `trunk` the changes to the changelog, testing steps and required versions that you did in the previous steps. You can do so copy-and-pasting the changes in a new commit directly to `trunk`, or cherry-picking the commits that introduced those changes.
+-   [ ] Move the changes to the changelog, testing steps and required versions that you did in the previous steps to `trunk`. You can do so copy-and-pasting the changes in a new commit directly to `trunk`, or cherry-picking the commits that introduced those changes.
 -   [ ] Run `npm run change-versions` to update the version in `trunk` to the next version of the plugin and include the `dev` suffix. For example, if you released 2.5.0, you should update the version in `trunk` to 2.6.0-dev.
 -   [ ] Update the schedules p2 with the shipped date for the release (PdToLP-K-p2).
 -   [ ] Edit the GitHub milestone of the release you just shipped and add the current date as the due date (this is used to track ship date as well).
 
 ## Pull request in WooCommerce Core for Package update
 
-This only needs to be done if this release is the last release of the feature plugin before code freeze in the WooCommerce core cycle. If this condition doesn't exist you can skip this section.
+**🆕 These steps need to be done for every WooCommerce Blocks release that _isn't_ a patch release**. More information can be found here on why: pdToLP-Of-p2.
 
 -   [ ] Remind whoever is porter this week to audit our codebase to ensure this [experimental interface document](https://github.com/woocommerce/woocommerce-blocks/blob/trunk/docs/internal-developers/blocks/feature-flags-and-experimental-interfaces.md) is up to date. See Pca54o-rM-p2 for more details.
 -   [ ] Create a pull request for updating the package in the [WooCommerce Core Repository](https://github.com/woocommerce/woocommerce/) that [bumps the package version](https://github.com/woocommerce/woocommerce/blob/747cb6b7184ba9fdc875ab104da5839cfda8b4be/plugins/woocommerce/composer.json) for the Woo Blocks package to the version you are releasing. Reviewing and merging the PR is your team's responsibility.

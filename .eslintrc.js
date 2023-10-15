@@ -117,6 +117,9 @@ const restrictedImports = [
 ];
 
 module.exports = {
+	env: {
+		browser: true,
+	},
 	root: true,
 	extends: [
 		'plugin:@woocommerce/eslint-plugin/recommended',
@@ -162,6 +165,7 @@ module.exports = {
 			'@wordpress/url',
 			'@woocommerce/blocks-test-utils',
 			'@woocommerce/e2e-utils',
+			'@woocommerce/e2e-mocks',
 			'babel-jest',
 			'dotenv',
 			'jest-environment-puppeteer',

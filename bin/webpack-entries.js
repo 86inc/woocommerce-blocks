@@ -38,20 +38,36 @@ const blocks = {
 	'legacy-template': {
 		customDir: 'classic-template',
 	},
+	'classic-shortcode': {},
 	'mini-cart': {},
 	'mini-cart-contents': {
 		customDir: 'mini-cart/mini-cart-contents',
 	},
 	'store-notices': {},
+	'page-content-wrapper': {},
 	'price-filter': {},
 	'product-best-sellers': {},
 	'product-category': {},
 	'product-categories': {},
+	'product-collection': {},
 	'product-gallery': {
 		isExperimental: true,
 	},
 	'product-gallery-large-image': {
 		customDir: 'product-gallery/inner-blocks/product-gallery-large-image',
+		isExperimental: true,
+	},
+	'product-gallery-large-image-next-previous': {
+		customDir:
+			'product-gallery/inner-blocks/product-gallery-large-image-next-previous',
+		isExperimental: true,
+	},
+	'product-gallery-pager': {
+		customDir: 'product-gallery/inner-blocks/product-gallery-pager',
+		isExperimental: true,
+	},
+	'product-gallery-thumbnails': {
+		customDir: 'product-gallery/inner-blocks/product-gallery-thumbnails',
 		isExperimental: true,
 	},
 	'product-new': {},
@@ -62,6 +78,7 @@ const blocks = {
 	'product-results-count': {},
 	'product-search': {},
 	'product-tag': {},
+	'product-template': {},
 	'product-top-rated': {},
 	'products-by-attribute': {},
 	'rating-filter': {},
@@ -76,11 +93,41 @@ const blocks = {
 	},
 	'single-product': {},
 	'stock-filter': {},
-	'product-collection': {
+	'collection-filters': {
 		isExperimental: true,
 	},
-	'product-template': {
-		isExperimental: true,
+	'order-confirmation-summary': {
+		customDir: 'order-confirmation/summary',
+	},
+	'order-confirmation-totals-wrapper': {
+		customDir: 'order-confirmation/totals-wrapper',
+	},
+	'order-confirmation-totals': {
+		customDir: 'order-confirmation/totals',
+	},
+	'order-confirmation-downloads-wrapper': {
+		customDir: 'order-confirmation/downloads-wrapper',
+	},
+	'order-confirmation-downloads': {
+		customDir: 'order-confirmation/downloads',
+	},
+	'order-confirmation-billing-address': {
+		customDir: 'order-confirmation/billing-address',
+	},
+	'order-confirmation-shipping-address': {
+		customDir: 'order-confirmation/shipping-address',
+	},
+	'order-confirmation-billing-wrapper': {
+		customDir: 'order-confirmation/billing-wrapper',
+	},
+	'order-confirmation-shipping-wrapper': {
+		customDir: 'order-confirmation/shipping-wrapper',
+	},
+	'order-confirmation-status': {
+		customDir: 'order-confirmation/status',
+	},
+	'order-confirmation-additional-information': {
+		customDir: 'order-confirmation/additional-information',
 	},
 };
 
@@ -153,10 +200,12 @@ const entries = {
 		...getBlockEntries( 'index.{t,j}s{,x}' ),
 	},
 	frontend: {
-		reviews: './assets/js/blocks/reviews/frontend.js',
+		reviews: './assets/js/blocks/reviews/frontend.ts',
 		...getBlockEntries( 'frontend.{t,j}s{,x}' ),
 		'mini-cart-component':
 			'./assets/js/blocks/mini-cart/component-frontend.tsx',
+		'product-button-interactivity':
+			'./assets/js/atomic/blocks/product-elements/button/frontend.tsx',
 	},
 	payments: {
 		'wc-payment-method-cheque':

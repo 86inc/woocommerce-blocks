@@ -35,6 +35,18 @@ class Cart extends AbstractBlock {
 	}
 
 	/**
+	 * Dequeues the scripts added by WC Core to the Cart page.
+	 *
+	 * @return void
+	 */
+	public function dequeue_woocommerce_core_scripts() {
+		wp_dequeue_script( 'wc-cart' );
+		wp_dequeue_script( 'wc-password-strength-meter' );
+		wp_dequeue_script( 'selectWoo' );
+		wp_dequeue_style( 'select2' );
+	}
+
+	/**
 	 * Register block pattern for Empty Cart Message to make it translatable.
 	 */
 	public function register_patterns() {
@@ -120,16 +132,18 @@ class Cart extends AbstractBlock {
 	/**
 	 * Enqueue frontend assets for this block, just in time for rendering.
 	 *
-	 * @param array $attributes  Any attributes that currently are available from the block.
+	 * @param array    $attributes  Any attributes that currently are available from the block.
+	 * @param string   $content    The block content.
+	 * @param WP_Block $block    The block object.
 	 */
-	protected function enqueue_assets( array $attributes ) {
+	protected function enqueue_assets( array $attributes, $content, $block ) {
 		/**
 		 * Fires before cart block scripts are enqueued.
 		 *
 		 * @since 2.6.0
 		 */
 		do_action( 'woocommerce_blocks_enqueue_cart_block_scripts_before' );
-		parent::enqueue_assets( $attributes );
+		parent::enqueue_assets( $attributes, $content, $block );
 		/**
 		 * Fires after cart block scripts are enqueued.
 		 *
@@ -147,11 +161,8 @@ class Cart extends AbstractBlock {
 	 * @return string Rendered block type output.
 	 */
 	protected function render( $attributes, $content, $block ) {
-		// Deregister core cart scripts and styles.
-		wp_dequeue_script( 'wc-cart' );
-		wp_dequeue_script( 'wc-password-strength-meter' );
-		wp_dequeue_script( 'selectWoo' );
-		wp_dequeue_style( 'select2' );
+		// Dequeue the core scripts when rendering this block.
+		add_action( 'wp_enqueue_scripts', array( $this, 'dequeue_woocommerce_core_scripts' ), 20 );
 
 		/**
 		 * We need to check if $content has any templates from prior iterations of the block, in order to update to the latest iteration.
@@ -239,7 +250,7 @@ class Cart extends AbstractBlock {
 
 		// Hydrate the following data depending on admin or frontend context.
 		if ( ! is_admin() && ! WC()->is_rest_api_request() ) {
-			$this->hydrate_from_api();
+			$this->asset_data_registry->hydrate_api_request( '/wc/store/v1/cart' );
 		}
 
 		/**
@@ -250,19 +261,6 @@ class Cart extends AbstractBlock {
 		do_action( 'woocommerce_blocks_cart_enqueue_data' );
 	}
 
-	/**
-	 * Hydrate the cart block with data from the API.
-	 */
-	protected function hydrate_from_api() {
-		// Cache existing notices now, otherwise they are caught by the Cart Controller and converted to exceptions.
-		$old_notices = WC()->session->get( 'wc_notices', array() );
-		wc_clear_notices();
-
-		$this->asset_data_registry->hydrate_api_request( '/wc/store/v1/cart' );
-
-		// Restore notices.
-		WC()->session->set( 'wc_notices', $old_notices );
-	}
 	/**
 	 * Register script and style assets for the block type before it is registered.
 	 *
