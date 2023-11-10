@@ -3,7 +3,11 @@
  */
 import { useState, useCallback, useEffect } from '@wordpress/element';
 import { AddressForm } from '@woocommerce/base-components/cart-checkout';
-import { useCheckoutAddress, useStoreEvents } from '@woocommerce/base-context';
+import {
+	useCheckoutAddress,
+	useStoreEvents,
+	useEditorContext,
+} from '@woocommerce/base-context';
 import type {
 	ShippingAddress,
 	AddressField,
@@ -34,6 +38,7 @@ const CustomerAddress = ( {
 		setShippingAddress,
 		setBillingAddress,
 		setShippingPhone,
+		setBillingPhone,
 		useShippingAsBilling,
 	} = useCheckoutAddress();
 	const { dispatchCheckoutEvent } = useStoreEvents();
@@ -102,9 +107,10 @@ const CustomerAddress = ( {
 				onEdit={ () => {
 					setEditing( true );
 				} }
+				showPhoneField={ showPhoneField }
 			/>
 		),
-		[ shippingAddress ]
+		[ shippingAddress, showPhoneField ]
 	);
 
 	const renderAddressFormComponent = useCallback(
@@ -129,6 +135,12 @@ const CustomerAddress = ( {
 							dispatchCheckoutEvent( 'set-phone-number', {
 								step: 'shipping',
 							} );
+							if ( useShippingAsBilling ) {
+								setBillingPhone( value );
+								dispatchCheckoutEvent( 'set-phone-number', {
+									step: 'billing',
+								} );
+							}
 						} }
 					/>
 				) }
@@ -140,9 +152,11 @@ const CustomerAddress = ( {
 			dispatchCheckoutEvent,
 			onChangeAddress,
 			requirePhoneField,
+			setBillingPhone,
 			setShippingPhone,
 			shippingAddress,
 			showPhoneField,
+			useShippingAsBilling,
 		]
 	);
 

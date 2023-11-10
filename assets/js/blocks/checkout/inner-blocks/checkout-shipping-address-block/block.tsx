@@ -19,6 +19,8 @@ import type {
 	AddressField,
 	AddressFields,
 } from '@woocommerce/settings';
+import { useSelect } from '@wordpress/data';
+import { CART_STORE_KEY } from '@woocommerce/block-data';
 
 /**
  * Internal dependencies
@@ -95,6 +97,13 @@ const Block = ( {
 		shippingAddress.address_1 &&
 		( shippingAddress.first_name || shippingAddress.last_name )
 	);
+
+	const { cartDataLoaded } = useSelect( ( select ) => {
+		const store = select( CART_STORE_KEY );
+		return {
+			cartDataLoaded: store.hasFinishedResolution( 'getCartData' ),
+		};
+	} );
 
 	return (
 		<>
