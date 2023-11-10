@@ -68,7 +68,7 @@ const MiniCartBlock = ( attributes: Props ): JSX.Element => {
 		cartItemsCount: cartItemsCountFromApi,
 		cartIsLoading,
 		cartTotals: cartTotalsFromApi,
-	} = useStoreCart();
+	} = useStoreCart(); // triggered by a hover to get latest cart data.
 
 	const cartIsLoadingForTheFirstTime = useRef( cartIsLoading );
 
