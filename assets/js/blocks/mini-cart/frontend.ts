@@ -164,7 +164,7 @@ window.addEventListener( 'load', () => {
 		miniCartButton.addEventListener( 'click', openDrawer );
 
 		// 86inc 86co - Usually triggered on MouseOver.
-		//loadScripts();
+		loadScripts();
 
 		const funcOnAddToCart =
 			miniCartBlock.dataset.addToCartBehaviour === 'open_drawer'
