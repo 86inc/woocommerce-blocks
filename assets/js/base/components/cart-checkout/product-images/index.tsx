@@ -7,6 +7,7 @@ import { PLACEHOLDER_IMG_SRC } from '@woocommerce/settings';
 // eslint-disable-next-line @woocommerce/dependency-group
 import ProductImage from '../product-image';
 
+//86inc 86co edit
 declare global {
 	namespace JSX {
 		interface IntrinsicElements {
@@ -22,6 +23,14 @@ declare global {
 			>;
 		}
 	}
+}
+
+//86inc 86co edit
+declare module 'react' {
+	interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
+		// extends React's HTMLAttributes
+		pagination?: string;
+	  }
 }
 
 interface ProductImagesProps {
@@ -46,9 +55,9 @@ const ProductImages = ( { images = [] }: ProductImagesProps ): JSX.Element => {
 			pagination="true"
 			pagination-clickable="true"
 		>
-			{ images.map( ( image ) => (
+			{ images.map( ( image, index ) => (
 				// eslint-disable-next-line react/jsx-key
-				<swiper-slide>
+				<swiper-slide key={ index }>
 					<ProductImage image={ image } fallbackAlt="" />
 				</swiper-slide>
 			) ) }

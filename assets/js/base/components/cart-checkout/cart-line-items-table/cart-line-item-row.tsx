@@ -160,6 +160,7 @@ const CartLineItemRow: React.ForwardRefExoticComponent<
 			precision: totalsCurrency.minorUnit,
 		} );
 
+		// 86inc and co edit for lumise images, could perhaps filter these with the api?
 		const customImages = extensions?.lumise_data?.screenshots || [];
 		const hasLumise = extensions?.lumise_data?.edit_link;
 

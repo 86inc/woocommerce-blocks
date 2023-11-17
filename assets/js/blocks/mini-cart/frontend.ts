@@ -26,7 +26,7 @@ interface dependencyData {
 
 updateTotals( getMiniCartTotalsFromLocalStorage() );
 // @86inc @86co edit, this makes the request to get cart data and then update mini cart
-getMiniCartTotalsFromServer().then( updateTotals );
+//getMiniCartTotalsFromServer().then( updateTotals );
 setStyles();
 
 window.addEventListener( 'load', () => {

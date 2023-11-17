@@ -122,6 +122,10 @@ const OrderSummaryItem = ( { cartItem }: OrderSummaryProps ): JSX.Element => {
 		arg,
 	} );
 
+	// 86inc 86co lumise data photo
+	const customImages = extensions?.lumise_data?.screenshots || [];
+	const firstImage = customImages.length ? customImages[0] : images[0];
+
 	return (
 		<div
 			className={ classnames(
@@ -146,7 +150,7 @@ const OrderSummaryItem = ( { cartItem }: OrderSummaryProps ): JSX.Element => {
 					/>
 				</div>
 				<ProductImage
-					image={ images.length ? images[ 0 ] : {} }
+					image={ firstImage }
 					fallbackAlt={ name }
 				/>
 			</div>
