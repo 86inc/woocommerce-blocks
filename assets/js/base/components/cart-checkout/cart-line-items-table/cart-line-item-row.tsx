@@ -231,6 +231,8 @@ const CartLineItemRow: React.ForwardRefExoticComponent<
 					}
 				>
 					{ /* We don't need to make it focusable, because product name has the same link. */ }
+					<ProductImages images={ itemImages } />
+					{ /* @86inc 86co edit we are using a custom ProductImages component.
 					{ isProductHiddenFromCatalog ? (
 						<ProductImage
 							image={ firstImage }
@@ -241,15 +243,14 @@ const CartLineItemRow: React.ForwardRefExoticComponent<
 						//<ProductImage image={ firstImage } fallbackAlt={ name }/>
 						//</a>
 
-						<ProductImages images={ itemImages } />
-					) }
+
+					) } */ }
 				</td>
 				<td className="wc-block-cart-item__product">
 					<div className="wc-block-cart-item__wrap">
+						{ /* 86inc 86co - we removed the isProductHiddenFromCatalog, it's okay for the simple product to be a link, we have a BE redirect // edit */ }
 						<ProductName
-							disabled={
-								isPendingDelete || isProductHiddenFromCatalog
-							}
+							disabled={ isPendingDelete }
 							name={ name }
 							permalink={ permalink }
 						/>
