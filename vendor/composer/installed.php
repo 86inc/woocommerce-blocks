@@ -1,8 +1,8 @@
 <?php return array(
     'root' => array(
         'name' => 'woocommerce/woocommerce-blocks',
-        'pretty_version' => '11.3.0',
-        'version' => '11.3.0.0',
+        'pretty_version' => '11.5.3',
+        'version' => '11.5.3.0',
         'reference' => NULL,
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
@@ -47,9 +47,9 @@
             'dev_requirement' => false,
         ),
         'automattic/jetpack-connection' => array(
-            'pretty_version' => 'v1.57.5',
-            'version' => '1.57.5.0',
-            'reference' => '7fee0a8ef4c469565115f568212b768d66fb5bbc',
+            'pretty_version' => 'v1.58.2',
+            'version' => '1.58.2.0',
+            'reference' => '9b12984bc9fcc075844b4f2e3fe27176e42cdf14',
             'type' => 'jetpack-library',
             'install_path' => __DIR__ . '/../automattic/jetpack-connection',
             'aliases' => array(),
@@ -83,9 +83,9 @@
             'dev_requirement' => false,
         ),
         'automattic/jetpack-status' => array(
-            'pretty_version' => 'v1.18.4',
-            'version' => '1.18.4.0',
-            'reference' => 'cc73830e40e620c8b4f85fcc7c145e772f347838',
+            'pretty_version' => 'v1.18.5',
+            'version' => '1.18.5.0',
+            'reference' => 'fe08772e2005b8cd78ec5e0d416b73a04ae57c10',
             'type' => 'jetpack-library',
             'install_path' => __DIR__ . '/../automattic/jetpack-status',
             'aliases' => array(),
@@ -113,8 +113,8 @@
             ),
         ),
         'woocommerce/woocommerce-blocks' => array(
-            'pretty_version' => '11.3.0',
-            'version' => '11.3.0.0',
+            'pretty_version' => '11.5.3',
+            'version' => '11.5.3.0',
             'reference' => NULL,
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
