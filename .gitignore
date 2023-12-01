@@ -52,7 +52,7 @@ tests/cli/vendor
 /logs
 
 # Composer
-/vendor/
+# /vendor/
 
 # Built files
 /build/
