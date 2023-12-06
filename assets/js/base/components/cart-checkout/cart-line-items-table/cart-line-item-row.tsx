@@ -301,7 +301,7 @@ const CartLineItemRow: React.ForwardRefExoticComponent<
 									<span className="icon-class icon-pencil"></span>
 									<span>
 										{ __(
-											'Edit Design',
+											'Edit Design & Quantity',
 											'woo-gutenberg-products-block'
 										) }
 									</span>
