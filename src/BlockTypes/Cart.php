@@ -250,7 +250,8 @@ class Cart extends AbstractBlock {
 
 		// Hydrate the following data depending on admin or frontend context.
 		if ( ! is_admin() && ! WC()->is_rest_api_request() ) {
-			$this->asset_data_registry->hydrate_api_request( '/wc/store/v1/cart' );
+			// @86inc @86co don't hydrate cart request so can do a cached load.
+			//$this->asset_data_registry->hydrate_api_request( '/wc/store/v1/cart' );
 		}
 
 		/**

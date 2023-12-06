@@ -26,7 +26,7 @@ interface dependencyData {
 
 updateTotals( getMiniCartTotalsFromLocalStorage() );
 // @86inc @86co edit, this makes the request to get cart data and then update mini cart
-//getMiniCartTotalsFromServer().then( updateTotals );
+getMiniCartTotalsFromServer().then( updateTotals );
 setStyles();
 
 window.addEventListener( 'load', () => {
@@ -164,7 +164,7 @@ window.addEventListener( 'load', () => {
 		miniCartButton.addEventListener( 'click', openDrawer );
 
 		// 86inc 86co - Usually triggered on MouseOver.
-		loadScripts();
+		//loadScripts();
 
 		const funcOnAddToCart =
 			miniCartBlock.dataset.addToCartBehaviour === 'open_drawer'
